@@ -1,10 +1,10 @@
 ReactionCore.registerPackage
-  name: 'reaction-paypal'
+  name: 'reaction-payCash'
   provides: ['paymentMethod']
   paymentTemplate: "paypalPaymentForm"
   label: 'PayPal'
-  description: 'Accept PayPal payments'
-  icon: 'fa fa-paypal'
+  description: 'Accept cash payments. Reaction POS'
+  icon: 'fa fa-credit-card'
   settingsRoute: 'paypal'
   defaultSettings:
     mode: false
@@ -15,7 +15,7 @@ ReactionCore.registerPackage
   autoEnable: false
   shopPermissions: [
     {
-      label: "Pay Pal"
+      label: "Pay Cash"
       permission: "dashboard/payments"
       group: "Shop Settings"
     }
