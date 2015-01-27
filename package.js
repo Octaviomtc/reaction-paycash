@@ -1,8 +1,8 @@
 Package.describe({
-  summary: "Reaction Paypal - PayPal payments for Reaction Commerce",
-  name: "reactioncommerce:reaction-paypal",
-  version: "0.1.4",
-  git: "https://github.com/reactioncommerce/reaction-paypal.git"
+  summary: "Reaction PayCash - PayCash payments for Reaction Commerce",
+  name: "octaviomtc:reaction-paycash",
+  version: "0.0.1",
+  git: "https://github.com/octaviomtc/reaction-paycash.git"
 });
 
 Npm.depends({'paypal-rest-sdk': '1.2.2'});
