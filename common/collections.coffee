@@ -48,3 +48,18 @@ ReactionCore.Schemas.PaypalPayment = new SimpleSchema
 
 ReactionCore.Schemas.PaypalPayment.messages
   "regEx payerName": "[label] must include both first and last name"
+
+
+
+ReactionCore.Schemas.PayCashPayment = new SimpleSchema
+  payerName:
+    type: String
+    label: "Name",
+    regEx: /^\w+\s\w+$/
+
+  amount:
+    type: Number
+    label: "Amount"
+
+ReactionCore.Schemas.PayCashPayment.messages
+  "regEx payerName": "[label] must include both first and last name"

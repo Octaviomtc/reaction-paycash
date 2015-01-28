@@ -1,4 +1,34 @@
 <template name="paypalPaymentForm">
+  {{#autoForm schema="ReactionCore.Schemas.PayCashPayment" id="paycash-payment-form"}}
+
+  <div class="row">
+    <div class="col-sm-12 col-lg-6 form-group{{#if afFieldIsInvalid name='payerName'}} has-error{{/if}}">
+      <label class="control-label">{{afFieldLabelText name='payerName'}}</label>
+      {{>afFieldInput name="payerName" value=cartPayerName}}
+      {{#if afFieldIsInvalid name="payerName"}}
+      <span class="help-block">{{afFieldMessage name="payerName"}}</span>
+      {{/if}}
+    </div>
+
+    <div class="col-sm-12 col-lg-6 form-group{{#if afFieldIsInvalid name='amount'}} has-error{{/if}}">
+      <label class="control-label">{{afFieldLabelText name='amount'}}</label>
+      {{>afFieldInput name="amount" placeholder='XXXX XXXX XXXX XXXX'}}
+      {{#if afFieldIsInvalid name="amount"}}
+      <span class="help-block">{{afFieldMessage name="amount"}}</span>
+      {{/if}}
+    </div>
+  </div>
+
+
+  <div class="alert alert-danger hidden">Oh! Snap!</div>
+  <button type="submit" class="btn btn-lg btn-success btn-block btn-complete-order">
+    <span id="btn-complete-order">Complete your order</span>
+    <i class="fa fa-spinner fa-spin hidden" id="btn-processing"></i>
+  </button>
+
+  {{/autoForm}}
+
+
   {{#autoForm schema="ReactionCore.Schemas.PaypalPayment" id="paypal-payment-form"}}
   <div class="row">
     <div class="col-sm-12 col-lg-6 form-group{{#if afFieldIsInvalid name='payerName'}} has-error{{/if}}">
