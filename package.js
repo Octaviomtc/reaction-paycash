@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Reaction PayCash - PayCash payments for Reaction Commerce",
   name: "octaviomtc:reaction-paycash",
-  version: "0.0.16",
+  version: "0.0.17",
   git: "https://github.com/octaviomtc/reaction-paycash.git"
 });
 
