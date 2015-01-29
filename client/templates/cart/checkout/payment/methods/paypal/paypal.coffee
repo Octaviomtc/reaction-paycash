@@ -53,49 +53,51 @@ AutoForm.addHooks "paycash-payment-form",
     form = {
       first_name: payerNamePieces[0]
       last_name: payerNamePieces[1]
-      number: amount
+      number: doc.amount
     }
 
-    # Submit for processing
-    Meteor.Paypal.authorize form,
-      total: Session.get "cartTotal"
-      currency: Shops.findOne().currency
-    , (error, transaction) ->
-      submitting = false
-      if error
-        # this only catches connection/authentication errors
-        # handlePaypalSubmitError(error)
-        # Hide processing UI
-        uiEnd(template, "Resubmit payment")
-        return
-      else
-        if transaction.saved is true #successful transaction
-          # Format the transaction to store with order and submit to CartWorkflow
-          paymentMethod =
-            processor: "PayCash"
-            storedCard: storedCard
-            method: transaction.payment.payer.payment_method
-            transactionId: transaction.payment.transactions[0].related_resources[0].authorization.id
-            amount: transaction.payment.transactions[0].amount.total
-            status: transaction.payment.state
-            mode: transaction.payment.intent
-            createdAt: new Date(transaction.payment.create_time)
-            updatedAt: new Date(transaction.payment.update_time)
+    console.log form
 
-          # Store transaction information with order
-          # paymentMethod will auto transition to
-          # CartWorkflow.paymentAuth() which
-          # will create order, clear the cart, and update inventory,
-          # and goto order confirmation page
-          CartWorkflow.paymentMethod(paymentMethod)
-          return
-        else # card errors are returned in transaction
-          # handlePaypalSubmitError(transaction.error)
-          # Hide processing UI
-          uiEnd(template, "Resubmit payment")
-          return
-
-    return false;
+    # # Submit for processing
+    # Meteor.Paypal.authorize form,
+    #   total: Session.get "cartTotal"
+    #   currency: Shops.findOne().currency
+    # , (error, transaction) ->
+    #   submitting = false
+    #   if error
+    #     # this only catches connection/authentication errors
+    #     # handlePaypalSubmitError(error)
+    #     # Hide processing UI
+    #     uiEnd(template, "Resubmit payment")
+    #     return
+    #   else
+    #     if transaction.saved is true #successful transaction
+    #       # Format the transaction to store with order and submit to CartWorkflow
+    #       paymentMethod =
+    #         processor: "PayCash"
+    #         storedCard: storedCard
+    #         method: transaction.payment.payer.payment_method
+    #         transactionId: transaction.payment.transactions[0].related_resources[0].authorization.id
+    #         amount: transaction.payment.transactions[0].amount.total
+    #         status: transaction.payment.state
+    #         mode: transaction.payment.intent
+    #         createdAt: new Date(transaction.payment.create_time)
+    #         updatedAt: new Date(transaction.payment.update_time)
+    #
+    #       # Store transaction information with order
+    #       # paymentMethod will auto transition to
+    #       # CartWorkflow.paymentAuth() which
+    #       # will create order, clear the cart, and update inventory,
+    #       # and goto order confirmation page
+    #       CartWorkflow.paymentMethod(paymentMethod)
+    #       return
+    #     else # card errors are returned in transaction
+    #       # handlePaypalSubmitError(transaction.error)
+    #       # Hide processing UI
+    #       uiEnd(template, "Resubmit payment")
+    #       return
+    #
+    # return false;
 
   beginSubmit: (formId, template) ->
     # Show Processing

@@ -2,9 +2,9 @@
   {{#autoForm schema="ReactionCore.Schemas.PayCashPayment" id="paycash-payment-form"}}
 
   <div class="row">
-    <div class="col-sm-12 col-lg-2 form-group{{#if afFieldIsInvalid name='payerName'}} has-error{{/if}}">
+    <div class="col-sm-12 col-lg-12 form-group{{#if afFieldIsInvalid name='payerName'}} has-error{{/if}}">
       <label class="control-label">{{afFieldLabelText name='payerName'}}</label>
-      {{>afFieldInput name="payerName" value=cartPayerName}}
+      {{>afFieldInput name="payerName" value=cartPayerName placeholder='Name'}}
       {{#if afFieldIsInvalid name="payerName"}}
       <span class="help-block">{{afFieldMessage name="payerName"}}</span>
       {{/if}}
@@ -12,7 +12,7 @@
 
     <div class="col-sm-12 col-lg-12 form-group{{#if afFieldIsInvalid name='amount'}} has-error{{/if}}">
       <label class="control-label">{{afFieldLabelText name='amount'}}</label>
-      {{>afFieldInput name="amount" placeholder='XXXX XXXX XXXX XXXX'}}
+      {{>afFieldInput name="amount" placeholder='$'}}
       {{#if afFieldIsInvalid name="amount"}}
       <span class="help-block">{{afFieldMessage name="amount"}}</span>
       {{/if}}
